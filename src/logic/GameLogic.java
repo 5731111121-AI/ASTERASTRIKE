@@ -9,6 +9,10 @@ public class GameLogic implements IEnemyShipsHolder {
 	public GameLogic() {
 		enemies = new CopyOnWriteArrayList<EnemyShip>();
 	}
+	
+	public void update(){
+		
+	}
 
 	@Override
 	public CopyOnWriteArrayList<EnemyShip> getEnemyships() {
