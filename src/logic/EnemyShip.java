@@ -1,11 +1,13 @@
 package logic;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public class EnemyShip extends SpaceShip implements Runnable {
 
-	public EnemyShip(int maxHP, int speedX, int speedY, int shootingDelay) {
-		super(maxHP, speedX, speedY, shootingDelay);
+	public EnemyShip(int grade, BufferedImage shipPic) {
+		// TODO Auto-generated constructor stub
+		super(grade, shipPic);
 	}
 
 	@Override

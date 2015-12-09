@@ -1,9 +1,6 @@
 package logic;
 
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
-import config.GlobalConfig;
 
 public class MainShip extends SpaceShip {
 
