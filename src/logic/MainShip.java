@@ -1,7 +1,5 @@
 package logic;
 
-import java.awt.Graphics2D;
-
 import config.GlobalConfig;
 import utility.DrawingUtility;
 
@@ -10,7 +8,6 @@ public class MainShip extends SpaceShip {
 	private int score;
 
 	public MainShip(int grade) {
-		// TODO Auto-generated constructor stub
 		super(grade);
 		score = 0;
 		switch (grade) {
@@ -24,26 +21,18 @@ public class MainShip extends SpaceShip {
 		}
 	}
 
-	@Override
-	public boolean isVisible() {
-		return !isDestroyed;
+	public int getScore() {
+		return score;
 	}
 
-	@Override
-	public int getZ() {
-		return Integer.MAX_VALUE - 1;
+	public void setScore(int score) {
+		this.score = score;
 	}
 
-	@Override
-	public void render(Graphics2D g2) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void crash(IRenderable a, IRenderable b) {
-		// TODO Auto-generated method stub
-
+	public void incScore(int amount) {
+		score += amount;
+		if (score < 0)
+			score = 0;
 	}
 
 }

@@ -1,10 +1,11 @@
 package logic;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import config.GlobalConfig;
 
-public abstract class SpaceShip implements ICrashable, IRenderable {
+public class SpaceShip implements ICrashable, IRenderable {
 
 	protected int HP;
 	protected int maxHP;
@@ -138,4 +139,26 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 	public void setBulletSpeed(int bulletSpeed) {
 		this.bulletSpeed = bulletSpeed;
 	}
+
+	@Override
+	public boolean isVisible() {
+		return !isDestroyed;
+	}
+
+	@Override
+	public int getZ() {
+		return Integer.MAX_VALUE - 1;
+	}
+
+	@Override
+	public void render(Graphics2D g2) {
+		g2.drawImage(shipPic, null, x, y);
+	}
+
+	@Override
+	public void crash(ICrashable a, ICrashable b) {
+		// TODO Auto-generated method stub
+
+	}
+	
 }

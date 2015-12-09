@@ -1,5 +1,5 @@
 package logic;
 
 public interface ICrashable {
-	public void crash(IRenderable a, IRenderable b);
+	public void crash(ICrashable a, ICrashable b);
 }

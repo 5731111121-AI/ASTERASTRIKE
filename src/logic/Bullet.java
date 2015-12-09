@@ -27,7 +27,7 @@ public class Bullet implements ICrashable, IRenderable {
 	}
 	
 	@Override
-	public void crash(IRenderable a, IRenderable b) {
+	public void crash(ICrashable a, ICrashable b) {
 		// TODO Auto-generated method stub
 		
 	}
