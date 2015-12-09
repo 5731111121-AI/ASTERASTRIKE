@@ -10,13 +10,42 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 	protected int speedY;
 	protected int shootingDelay;
 	protected boolean isDestroyed;
+	protected int direction;
+	protected int x;
+	protected int y;
 
-	public SpaceShip(int maxHP, int speedX, int speedY, int shootingDelay) {
+
+	public SpaceShip(int maxHP, int speedX, int speedY,int shootingDelay,int direction) {
 		this.maxHP = this.HP = maxHP;
 		this.speedX = speedX;
 		this.speedY = speedY;
 		this.shootingDelay = shootingDelay;
+		this.direction=direction;
 		isDestroyed = false;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getDirection() {
+		return direction;
+	}
+
+	public void setDirection(int direction) {
+		this.direction = direction;
 	}
 
 	public int getHP() {
