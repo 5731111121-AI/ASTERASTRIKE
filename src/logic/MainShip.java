@@ -1,36 +1,25 @@
 package logic;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
+import config.GlobalConfig;
 
 public class MainShip extends SpaceShip {
 
 	private int score;
-	private int grade;
-	
-	public MainShip(int maxHP, int speedX, int speedY, int shootingDelay, int grade) {
-		super(maxHP, speedX, speedY, shootingDelay);
+
+	public MainShip(int grade) {
+		// TODO Auto-generated constructor stub
+		super(grade);
 		score = 0;
-		this.grade = grade;
-		SpecialShip.upgrade(this, this.grade);
+		switch (grade) {
+		case 1:
+			break;
+		default:
+			break;
+		}
 	}
-	
-	public int getScore() {
-		return score;
-	}
-	
-	public void setScore(int score) {
-		this.score = score < 0 ? 0 : score;
-	}
-
-	public int getGrade() {
-		return grade;
-	}
-
-	public void setGrade(int grade) {
-		this.grade = grade < 0 ? 0 : grade;
-	}
-
-
 
 	@Override
 	public boolean isVisible() {
@@ -51,7 +40,7 @@ public class MainShip extends SpaceShip {
 	@Override
 	public void crash(IRenderable a, IRenderable b) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

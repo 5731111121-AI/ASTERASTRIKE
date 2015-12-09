@@ -20,5 +20,6 @@ public class GlobalConfig {
 	public static final int DEFAULT_MAXHP = 5;
 	public static final int DEFAULT_BULLET_DAMAGE = 1;
 	public static final int DEFAULT_SHOOTING_DELAY = 40;
+	public static final int DEFAULT_BULLET_SPEED = 50;
 	public static final int GAME_DELAY = 20;
 }

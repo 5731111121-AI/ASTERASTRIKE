@@ -9,7 +9,7 @@ public class ResourceUtility {
 	public static Font getFontFromResource(String file) {
 		Font font = null;
 		try {
-			InputStream fontFile = new BufferedInputStream(ResourceUtility.class.getClassLoader().getResourceAsStream("/fonts" + file));
+			InputStream fontFile = new BufferedInputStream(ResourceUtility.class.getClassLoader().getResourceAsStream("/res/fonts" + file));
 			font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 		} catch (Exception e) {
 			e.printStackTrace();
