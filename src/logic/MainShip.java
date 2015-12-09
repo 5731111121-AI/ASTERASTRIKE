@@ -2,6 +2,9 @@ package logic;
 
 import java.awt.Graphics2D;
 
+import config.GlobalConfig;
+import utility.DrawingUtility;
+
 public class MainShip extends SpaceShip {
 
 	private int score;
@@ -14,6 +17,9 @@ public class MainShip extends SpaceShip {
 		case 1:
 			break;
 		default:
+			setShipPic(DrawingUtility.getImageFromResource("MainShip"));
+			int shipHeight = shipPic.getHeight();
+			y = GlobalConfig.SCREEN_HEIGHT - shipHeight;
 			break;
 		}
 	}

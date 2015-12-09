@@ -8,8 +8,8 @@ public class GlobalConfig {
 
 	public static final String GAME_NAME = "ASTERA STRIKE";
 	//screen configuration
-	public static final int SCREEN_WIDTH = 1280;
-	public static final int SCREEN_HEIGHT = 768;
+	public static final int SCREEN_WIDTH = 1024;
+	public static final int SCREEN_HEIGHT = 576;
 	public static final int SCREEN_WIDTH_CENTER = SCREEN_WIDTH / 2;
 	public static final int SCREEN_HEIGHT_CENTER = SCREEN_HEIGHT / 2;
 	public static final Font mainFont = ResourceUtility.getFontFromResource("VanadineRg.ttf");
