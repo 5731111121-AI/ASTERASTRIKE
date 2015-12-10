@@ -1,9 +1,12 @@
 package logic;
 
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.HashSet;
 
 import config.GlobalConfig;
+import utility.InputUtility;
 
 public class SpaceShip implements ICrashable, IRenderable {
 
@@ -27,9 +30,11 @@ public class SpaceShip implements ICrashable, IRenderable {
 		speedY = GlobalConfig.DEFAULT_SPEEDY;
 		shootingDelay = GlobalConfig.DEFAULT_SHOOTING_DELAY;
 		bulletSpeed = GlobalConfig.DEFAULT_BULLET_SPEED;
+		this.shipPic = shipPic;
+		this.grade = grade;
 		isDestroyed = false;
 	}
-	
+
 	public SpaceShip(int grade) {
 		maxHP = this.HP = GlobalConfig.DEFAULT_MAXHP;
 		x = GlobalConfig.SCREEN_WIDTH_CENTER;
@@ -38,6 +43,7 @@ public class SpaceShip implements ICrashable, IRenderable {
 		speedY = GlobalConfig.DEFAULT_SPEEDY;
 		shootingDelay = GlobalConfig.DEFAULT_SHOOTING_DELAY;
 		bulletSpeed = GlobalConfig.DEFAULT_BULLET_SPEED;
+		this.grade = grade;
 		shipPic = null;
 		isDestroyed = false;
 	}
@@ -156,9 +162,83 @@ public class SpaceShip implements ICrashable, IRenderable {
 	}
 
 	@Override
-	public void crash(ICrashable a, ICrashable b) {
-		// TODO Auto-generated method stub
+	public boolean crash(ICrashable a, ICrashable b) {
+		int ax1 = ((SpaceShip) a).x;
+		int ay1 = ((SpaceShip) a).y;
+		int ax2 = ((SpaceShip) a).x + ((SpaceShip) a).shipPic.getWidth();
+		int ay2 = ((SpaceShip) a).x + ((SpaceShip) a).shipPic.getHeight();
+		int bx1 = ((SpaceShip) b).x;
+		int by1 = ((SpaceShip) b).y;
+		int bx2 = ((SpaceShip) b).x + ((SpaceShip) b).shipPic.getWidth();
+		int by2 = ((SpaceShip) b).x + ((SpaceShip) b).shipPic.getHeight();
 
+		if (by2 < ay1 || ay2 < by1 || bx2 < ax1 || ax2 < bx1) {
+			return false;
+		} else {
+			HashSet<String> maskShipA = getMask((SpaceShip) a);
+			HashSet<String> maskShipB = getMask((SpaceShip) b);
+
+			maskShipA.retainAll(maskShipB);
+
+			if (maskShipA.size() > 0) {
+				return true;
+			}
+			return false;
+		}
 	}
-	
+
+	public HashSet<String> getMask(SpaceShip c) {
+		HashSet<String> mask = new HashSet<String>();
+		BufferedImage img = c.shipPic;
+		int pixel, a;
+		for (int i = 0; i < img.getWidth(); i++) {
+			for (int j = 0; j < img.getHeight(); j++) {
+				pixel = img.getRGB(i, j);
+				a = (pixel >> 24) & 0xff;
+				if (a != 0) {
+					mask.add((x + i) + ", " + (y - j));
+				}
+			}
+		}
+		return mask;
+	}
+
+	public void update() {
+		if (InputUtility.getKeyPressed(KeyEvent.VK_RIGHT)) {
+			x += speedX;
+			x = (x <= GlobalConfig.SCREEN_WIDTH - shipPic.getWidth()) ? x
+					: GlobalConfig.SCREEN_WIDTH - shipPic.getWidth();
+		}
+		if (InputUtility.getKeyPressed(KeyEvent.VK_D)) {
+			x += speedX;
+			x = (x <= GlobalConfig.SCREEN_WIDTH - shipPic.getWidth()) ? x
+					: GlobalConfig.SCREEN_WIDTH - shipPic.getWidth();
+		}
+		if (InputUtility.getKeyPressed(KeyEvent.VK_LEFT)) {
+			x -= speedX;
+			x = (x >= 0) ? x : 0;
+		}
+		if (InputUtility.getKeyPressed(KeyEvent.VK_A)) {
+			x -= speedX;
+			x = (x >= shipPic.getWidth()) ? x : shipPic.getWidth();
+		}
+		if (InputUtility.getKeyPressed(KeyEvent.VK_DOWN)) {
+			y += speedY;
+			y = (y <= GlobalConfig.SCREEN_HEIGHT - shipPic.getHeight()) ? y
+					: GlobalConfig.SCREEN_HEIGHT - shipPic.getHeight();
+		}
+		if (InputUtility.getKeyPressed(KeyEvent.VK_S)) {
+			y += speedY;
+			y = (y <= GlobalConfig.SCREEN_HEIGHT - shipPic.getHeight()) ? y
+					: GlobalConfig.SCREEN_HEIGHT - shipPic.getHeight();
+		}
+		if (InputUtility.getKeyPressed(KeyEvent.VK_UP)) {
+			y -= speedY;
+			y = (y >= 300) ? x : 300;
+		}
+		if (InputUtility.getKeyPressed(KeyEvent.VK_W)) {
+			y -= speedY;
+			y = (y >= 300) ? x : 300;
+		}
+	}
 }

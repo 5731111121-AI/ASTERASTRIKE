@@ -2,8 +2,10 @@ package logic;
 
 import java.awt.Graphics2D;
 
+import config.GlobalConfig;
+
 public class Bullet implements ICrashable, IRenderable {
-	
+
 	protected int damage;
 	protected int speed;
 	protected int dir;
@@ -11,7 +13,7 @@ public class Bullet implements ICrashable, IRenderable {
 	private int y;
 	protected SpaceShip shooter;
 	protected boolean isDestroyed;
-	
+
 	public Bullet(int damage, int speed, int x, int y, SpaceShip shooter) {
 		this.damage = damage;
 		this.speed = speed;
@@ -21,15 +23,18 @@ public class Bullet implements ICrashable, IRenderable {
 		this.dir = (shooter instanceof MainShip) ? -1 : 1;
 		isDestroyed = false;
 	}
-	
-	public void update(){
-		if(!isDestroyed) y += dir * speed;
+
+	public void update() {
+		if (!isDestroyed)
+			y += dir * speed;
+		if (y > GlobalConfig.SCREEN_HEIGHT)
+			isDestroyed = true;
 	}
-	
+
 	@Override
-	public void crash(ICrashable a, ICrashable b) {
+	public boolean crash(ICrashable a, ICrashable b) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
@@ -45,6 +50,6 @@ public class Bullet implements ICrashable, IRenderable {
 	@Override
 	public void render(Graphics2D g2) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
