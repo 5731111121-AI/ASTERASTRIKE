@@ -2,6 +2,7 @@ package logic;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.HashSet;
 
 import config.GlobalConfig;
 
@@ -12,6 +13,8 @@ public class Bullet implements ICrashable, IRenderable {
 	protected int dir;
 	private int x;
 	private int y;
+	private static final int bulletWidth = 10;
+	private static final int bulletHeight = 18;
 	protected SpaceShip shooter;
 	protected boolean isDestroyed;
 
@@ -34,7 +37,20 @@ public class Bullet implements ICrashable, IRenderable {
 
 	@Override
 	public boolean crash(ICrashable a, ICrashable b) {
-		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean crash(SpaceShip a) {
+		HashSet<String> maskA = a.getMask(a);
+		HashSet<String> maskB = new HashSet<String>();
+		for (int i = x; i < bulletWidth; i++) {
+			for (int j = y; j < bulletHeight; j++) {
+				maskB.add(i + ", " + j);
+			}
+		}
+		maskA.retainAll(maskB);
+		if (maskA.size() == 0)
+			return true;
 		return false;
 	}
 
@@ -50,9 +66,9 @@ public class Bullet implements ICrashable, IRenderable {
 
 	@Override
 	public void render(Graphics2D g2) {
-		// TODO Auto-generated method stub
 		g2.setColor(new Color(255, 0, 200, 40));
-		if(shooter instanceof MainShip) g2.setColor(Color.CYAN);
-		g2.fillRect(x - 5, y, 10, 18);
+		if (shooter instanceof MainShip)
+			g2.setColor(Color.CYAN);
+		g2.fillRect(x - 5, y, bulletWidth, bulletHeight);
 	}
 }

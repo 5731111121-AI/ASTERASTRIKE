@@ -19,4 +19,18 @@ public class EnemyShip extends SpaceShip{
 		new Bullet(bulletDamage, bulletSpeed, x + shipPic.getWidth() / 2, y, this);
 	}
 
+	@Override
+	public void update() {
+		if(!isDestroyed) {
+			y += speedY;
+			if(y > GlobalConfig.SCREEN_HEIGHT) {
+				isDestroyed = true;
+				return;
+			}
+			if(shootingDelayCounter++ % shootingDelay == 0){
+				shoot();
+			}
+		}
+	}
+
 }

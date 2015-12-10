@@ -1,6 +1,9 @@
 package logic;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+
+import config.GlobalConfig;
 
 public class PlayerStatus implements IRenderable {
 	
@@ -13,9 +16,13 @@ public class PlayerStatus implements IRenderable {
 	public int getScore() {
 		return score;
 	}
+	
+	public void incScore(int amount){
+		score = score + amount >= 0 ? score + amount : 0;
+	}
 
 	public void setScore(int score) {
-		this.score = score;
+		this.score = score >= 0 ? score : 0;
 	}
 
 	@Override
@@ -30,7 +37,9 @@ public class PlayerStatus implements IRenderable {
 
 	@Override
 	public void render(Graphics2D g2) {
-		
+		g2.setColor(Color.WHITE);
+		g2.setFont(GlobalConfig.subFont);
+		g2.drawString("Score: " + score, 10, 10);
 	}
 
 }
