@@ -20,6 +20,7 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 	protected int shootingDelay;
 	protected int bulletSpeed;
 	protected boolean isDestroyed;
+	protected int bulletDamage;
 	protected int grade;
 	protected BufferedImage shipPic;
 
@@ -32,6 +33,7 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 		shootingDelayCounter = 0;
 		shootingDelay = GlobalConfig.DEFAULT_SHOOTING_DELAY;
 		bulletSpeed = GlobalConfig.DEFAULT_BULLET_SPEED;
+		bulletDamage = GlobalConfig.DEFAULT_BULLET_DAMAGE;
 		this.shipPic = shipPic;
 		this.grade = grade;
 		isDestroyed = false;
@@ -46,6 +48,7 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 		shootingDelayCounter = 0;
 		shootingDelay = GlobalConfig.DEFAULT_SHOOTING_DELAY;
 		bulletSpeed = GlobalConfig.DEFAULT_BULLET_SPEED;
+		bulletDamage = GlobalConfig.DEFAULT_BULLET_DAMAGE;
 		this.grade = grade;
 		shipPic = null;
 		isDestroyed = false;

@@ -16,8 +16,7 @@ public class EnemyShip extends SpaceShip{
 
 	@Override
 	public void shoot() {
-		// TODO Auto-generated method stub
-		
+		new Bullet(bulletDamage, bulletSpeed, x + shipPic.getWidth() / 2, y, this);
 	}
 
 }
