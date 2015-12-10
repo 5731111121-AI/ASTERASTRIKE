@@ -41,6 +41,8 @@ public class Bullet implements ICrashable, IRenderable {
 	}
 
 	public boolean crash(SpaceShip a) {
+		if (a == shooter)
+			return false;
 		HashSet<String> maskA = a.getMask(a);
 		HashSet<String> maskB = new HashSet<String>();
 		for (int i = x; i < bulletWidth; i++) {

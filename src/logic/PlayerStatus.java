@@ -8,9 +8,19 @@ import config.GlobalConfig;
 public class PlayerStatus implements IRenderable {
 	
 	private int score;
+	private boolean isGameOver;
 	
 	public PlayerStatus() {
 		score = 0;
+		isGameOver = false;
+	}
+
+	public boolean isGameOver() {
+		return isGameOver;
+	}
+
+	public void setGameOver(boolean isGameOver) {
+		this.isGameOver = isGameOver;
 	}
 
 	public int getScore() {
