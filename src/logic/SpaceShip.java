@@ -8,7 +8,7 @@ import java.util.HashSet;
 import config.GlobalConfig;
 import utility.InputUtility;
 
-public class SpaceShip implements ICrashable, IRenderable {
+public abstract class SpaceShip implements ICrashable, IRenderable {
 
 	protected int HP;
 	protected int maxHP;
@@ -16,6 +16,7 @@ public class SpaceShip implements ICrashable, IRenderable {
 	protected int speedY;
 	protected int x;
 	protected int y;
+	protected int shootingDelayCounter;
 	protected int shootingDelay;
 	protected int bulletSpeed;
 	protected boolean isDestroyed;
@@ -28,6 +29,7 @@ public class SpaceShip implements ICrashable, IRenderable {
 		y = GlobalConfig.SCREEN_HEIGHT;
 		speedX = GlobalConfig.DEFAULT_SPEEDX;
 		speedY = GlobalConfig.DEFAULT_SPEEDY;
+		shootingDelayCounter = 0;
 		shootingDelay = GlobalConfig.DEFAULT_SHOOTING_DELAY;
 		bulletSpeed = GlobalConfig.DEFAULT_BULLET_SPEED;
 		this.shipPic = shipPic;
@@ -41,6 +43,7 @@ public class SpaceShip implements ICrashable, IRenderable {
 		y = GlobalConfig.SCREEN_HEIGHT;
 		speedX = GlobalConfig.DEFAULT_SPEEDX;
 		speedY = GlobalConfig.DEFAULT_SPEEDY;
+		shootingDelayCounter = 0;
 		shootingDelay = GlobalConfig.DEFAULT_SHOOTING_DELAY;
 		bulletSpeed = GlobalConfig.DEFAULT_BULLET_SPEED;
 		this.grade = grade;
@@ -240,5 +243,10 @@ public class SpaceShip implements ICrashable, IRenderable {
 			y -= speedY;
 			y = (y >= 300) ? x : 300;
 		}
+		if(shootingDelayCounter++ % shootingDelay == 0){
+			shoot();
+		}
 	}
+	
+	public abstract void shoot();
 }

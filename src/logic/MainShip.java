@@ -17,4 +17,10 @@ public class MainShip extends SpaceShip {
 			break;
 		}
 	}
+
+	@Override
+	public void shoot() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -14,4 +14,10 @@ public class EnemyShip extends SpaceShip{
 		x = GeneralUtility.random(0, GlobalConfig.SCREEN_WIDTH - 150);
 	}
 
+	@Override
+	public void shoot() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
