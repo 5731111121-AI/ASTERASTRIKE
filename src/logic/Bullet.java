@@ -40,7 +40,7 @@ public class Bullet implements ICrashable, IRenderable {
 				}
 			}
 		}
-		if (y > GlobalConfig.SCREEN_HEIGHT)
+		if (y > GlobalConfig.SCREEN_HEIGHT || y < 0)
 			isDestroyed = true;
 	}
 
@@ -91,7 +91,7 @@ public class Bullet implements ICrashable, IRenderable {
 
 	@Override
 	public void render(Graphics2D g2) {
-		g2.setColor(new Color(255, 0, 200, 40));
+		g2.setColor(Color.MAGENTA);
 		if (shooter instanceof MainShip)
 			g2.setColor(Color.CYAN);
 		g2.fillRect(x - 3, y, bulletWidth, bulletHeight);

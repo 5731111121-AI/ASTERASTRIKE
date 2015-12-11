@@ -44,8 +44,8 @@ public class GamePlay extends JComponent{
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.setBackground(Color.WHITE);
-		g2d.clearRect(0, 0, 640, 480);
+		g2d.setBackground(Color.black);
+		g2d.clearRect(0, 0, GlobalConfig.SCREEN_WIDTH, GlobalConfig.SCREEN_HEIGHT);
 		for (IRenderable en : RenderableHolder.getInstance().getRenderableList())
 			if(en.isVisible())
 				en.render(g2d);

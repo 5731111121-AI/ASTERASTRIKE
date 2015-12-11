@@ -1,6 +1,7 @@
 package logic;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 import config.GlobalConfig;
@@ -49,7 +50,7 @@ public class PlayerStatus implements IRenderable {
 	public void render(Graphics2D g2) {
 		g2.setColor(Color.WHITE);
 		g2.setFont(GlobalConfig.subFont);
-		g2.drawString("Score: " + score, 10, 10);
+		g2.drawString("Score: " + score, 10, 25);
 	}
 
 }

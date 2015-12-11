@@ -12,7 +12,7 @@ public class EnemyShip extends SpaceShip{
 		super(grade, shipPic);
 		y = 0;
 		x = GeneralUtility.random(0, GlobalConfig.SCREEN_WIDTH - 150);
-		shootingDelay = GlobalConfig.DEFAULT_SHOOTING_DELAY * 2;
+		shootingDelay = GlobalConfig.DEFAULT_SHOOTING_DELAY * 3;
 	}
 
 	@Override

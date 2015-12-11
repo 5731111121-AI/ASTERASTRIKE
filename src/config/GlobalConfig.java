@@ -12,8 +12,8 @@ public class GlobalConfig {
 	public static final int SCREEN_HEIGHT = 576;
 	public static final int SCREEN_WIDTH_CENTER = SCREEN_WIDTH / 2;
 	public static final int SCREEN_HEIGHT_CENTER = SCREEN_HEIGHT / 2;
-	public static final Font mainFont = ResourceUtility.getFontFromResource("VanadineRg.ttf");
-	public static final Font subFont = ResourceUtility.getFontFromResource("VenusRisingRg.ttf");
+	public static final Font mainFont = ResourceUtility.getFontFromResource("VanadineRg.ttf").deriveFont(Font.PLAIN, 30);
+	public static final Font subFont = ResourceUtility.getFontFromResource("VenusRisingRg.ttf").deriveFont(Font.PLAIN, 20);
 	//game configuration
 	public static final int DEFAULT_SPEEDX = 3;
 	public static final int DEFAULT_SPEEDY = 2;

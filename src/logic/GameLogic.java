@@ -35,6 +35,9 @@ public class GameLogic {
 					playerStatus.setGameOver(true);
 				}
 				if (e.isDestroyed) {
+					if(e.HP == 0){
+						
+					}
 					eShips.remove(e);
 					RenderableHolder.getInstance().getRenderableList().remove(e);
 				}

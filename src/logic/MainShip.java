@@ -35,37 +35,19 @@ public class MainShip extends SpaceShip {
 			x = (x <= GlobalConfig.SCREEN_WIDTH - shipPic.getWidth()) ? x
 					: GlobalConfig.SCREEN_WIDTH - shipPic.getWidth();
 		}
-		/*if (InputUtility.getKeyPressed(KeyEvent.VK_D)) {
-			x += speedX;
-			x = (x <= GlobalConfig.SCREEN_WIDTH - shipPic.getWidth()) ? x
-					: GlobalConfig.SCREEN_WIDTH - shipPic.getWidth();
-		}*/
 		if (InputUtility.getKeyPressed(KeyEvent.VK_LEFT)) {
 			x -= speedX;
 			x = (x >= 0) ? x : 0;
 		}
-		/*if (InputUtility.getKeyPressed(KeyEvent.VK_A)) {
-			x -= speedX;
-			x = (x >= shipPic.getWidth()) ? x : shipPic.getWidth();
-		}*/
 		if (InputUtility.getKeyPressed(KeyEvent.VK_DOWN)) {
 			y += speedY;
 			y = (y <= GlobalConfig.SCREEN_HEIGHT - shipPic.getHeight()) ? y
 					: GlobalConfig.SCREEN_HEIGHT - shipPic.getHeight();
 		}
-		/*if (InputUtility.getKeyPressed(KeyEvent.VK_S)) {
-			y += speedY;
-			y = (y <= GlobalConfig.SCREEN_HEIGHT - shipPic.getHeight()) ? y
-					: GlobalConfig.SCREEN_HEIGHT - shipPic.getHeight();
-		}*/
 		if (InputUtility.getKeyPressed(KeyEvent.VK_UP)) {
 			y -= speedY;
-			y = (y <= 150) ? 150 : y;
+			y = (y <= 100) ? 100 : y;
 		}
-		/*if (InputUtility.getKeyPressed(KeyEvent.VK_W)) {
-			y -= speedY;
-			y = (y >= 300) ? x : 300;
-		}*/
 		if (++shootingDelayCounter % shootingDelay == 0) {
 			shoot();
 		}

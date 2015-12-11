@@ -175,17 +175,14 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 		int by2 = this.y + this.shipPic.getHeight();
 
 		if (by2 < ay1 || ay2 < by1 || bx2 < ax1 || ax2 < bx1) {
-			return false;
+			return false; 
 		} else {
 			HashSet<String> maskShipA = getMask((SpaceShip) a);
 			HashSet<String> maskShipB = getMask(this);
 
-			maskShipA.retainAll(maskShipB);
+			maskShipB.retainAll(maskShipA);
 
-			if (maskShipA.size() > 0) {
-				return true;
-			}
-			return false;
+			return maskShipB.size() > 0;
 		}
 	}
 
@@ -198,7 +195,7 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 				pixel = img.getRGB(i, j);
 				a = (pixel >> 24) & 0xff;
 				if (a != 0) {
-					mask.add((x + i) + ", " + (y - j));
+					mask.add((c.x + i) + ", " + (c.y - j));
 				}
 			}
 		}
