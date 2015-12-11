@@ -47,7 +47,6 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 		bulletSpeed = GlobalConfig.DEFAULT_BULLET_SPEED;
 		bulletDamage = GlobalConfig.DEFAULT_BULLET_DAMAGE;
 		this.grade = grade;
-		shipPic = null;
 		isDestroyed = false;
 	}
 
@@ -165,21 +164,21 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 	}
 
 	@Override
-	public boolean crash(ICrashable a, ICrashable b) {
+	public boolean crash(ICrashable a) {
 		int ax1 = ((SpaceShip) a).x;
 		int ay1 = ((SpaceShip) a).y;
 		int ax2 = ((SpaceShip) a).x + ((SpaceShip) a).shipPic.getWidth();
-		int ay2 = ((SpaceShip) a).x + ((SpaceShip) a).shipPic.getHeight();
-		int bx1 = ((SpaceShip) b).x;
-		int by1 = ((SpaceShip) b).y;
-		int bx2 = ((SpaceShip) b).x + ((SpaceShip) b).shipPic.getWidth();
-		int by2 = ((SpaceShip) b).x + ((SpaceShip) b).shipPic.getHeight();
+		int ay2 = ((SpaceShip) a).y + ((SpaceShip) a).shipPic.getHeight();
+		int bx1 = this.x;
+		int by1 = this.y;
+		int bx2 = this.x + this.shipPic.getWidth();
+		int by2 = this.y + this.shipPic.getHeight();
 
 		if (by2 < ay1 || ay2 < by1 || bx2 < ax1 || ax2 < bx1) {
 			return false;
 		} else {
 			HashSet<String> maskShipA = getMask((SpaceShip) a);
-			HashSet<String> maskShipB = getMask((SpaceShip) b);
+			HashSet<String> maskShipB = getMask(this);
 
 			maskShipA.retainAll(maskShipB);
 

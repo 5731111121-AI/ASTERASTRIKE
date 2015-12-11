@@ -12,11 +12,12 @@ public class EnemyShip extends SpaceShip{
 		super(grade, shipPic);
 		y = 0;
 		x = GeneralUtility.random(0, GlobalConfig.SCREEN_WIDTH - 150);
+		shootingDelay = GlobalConfig.DEFAULT_SHOOTING_DELAY * 2;
 	}
 
 	@Override
 	public void shoot() {
-		new Bullet(bulletDamage, bulletSpeed, x + shipPic.getWidth() / 2, y, this);
+		RenderableHolder.getInstance().add(new Bullet(bulletDamage, bulletSpeed, x + shipPic.getWidth() / 2, y + shipPic.getHeight(), this));
 	}
 
 	@Override

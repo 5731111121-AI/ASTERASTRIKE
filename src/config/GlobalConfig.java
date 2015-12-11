@@ -15,11 +15,11 @@ public class GlobalConfig {
 	public static final Font mainFont = ResourceUtility.getFontFromResource("VanadineRg.ttf");
 	public static final Font subFont = ResourceUtility.getFontFromResource("VenusRisingRg.ttf");
 	//game configuration
-	public static final int DEFAULT_SPEEDX = 50;
-	public static final int DEFAULT_SPEEDY = 50;
+	public static final int DEFAULT_SPEEDX = 3;
+	public static final int DEFAULT_SPEEDY = 2;
 	public static final int DEFAULT_MAXHP = 5;
 	public static final int DEFAULT_BULLET_DAMAGE = 1;
-	public static final int DEFAULT_SHOOTING_DELAY = 40;
-	public static final int DEFAULT_BULLET_SPEED = 50;
+	public static final int DEFAULT_SHOOTING_DELAY = 15;
+	public static final int DEFAULT_BULLET_SPEED = 15;
 	public static final int GAME_DELAY = 20;
 }

@@ -19,5 +19,5 @@ public class DrawingUtility {
 		}
 	}
 	
-	protected static final BufferedImage BACKGROUND = getImageFromResource("background-sprite.jpg");
+	//protected static final BufferedImage BACKGROUND = getImageFromResource("background-sprite.jpg");
 }
