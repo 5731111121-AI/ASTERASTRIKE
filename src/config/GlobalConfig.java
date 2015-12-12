@@ -2,18 +2,19 @@ package config;
 
 import java.awt.Font;
 
-import utility.ResourceUtility;
+import utility.GeneralUtility;
 
 public class GlobalConfig {
 
 	public static final String GAME_NAME = "ASTERA STRIKE";
+	public static final int REFRESH_DELAY = 20;
 	//screen configuration
 	public static final int SCREEN_WIDTH = 1024;
 	public static final int SCREEN_HEIGHT = 576;
 	public static final int SCREEN_WIDTH_CENTER = SCREEN_WIDTH / 2;
 	public static final int SCREEN_HEIGHT_CENTER = SCREEN_HEIGHT / 2;
-	public static final Font mainFont = ResourceUtility.getFontFromResource("VanadineRg.ttf").deriveFont(Font.PLAIN, 30);
-	public static final Font subFont = ResourceUtility.getFontFromResource("VenusRisingRg.ttf").deriveFont(Font.PLAIN, 20);
+	public static final Font mainFont = GeneralUtility.getFontFromResource("VanadineRg.ttf").deriveFont(Font.PLAIN, 30);
+	public static final Font subFont = GeneralUtility.getFontFromResource("VenusRisingRg.ttf").deriveFont(Font.PLAIN, 20);
 	//game configuration
 	public static final int DEFAULT_SPEEDX = 3;
 	public static final int DEFAULT_SPEEDY = 2;
