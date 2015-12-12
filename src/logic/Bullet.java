@@ -13,8 +13,8 @@ public class Bullet implements ICrashable, IRenderable {
 	protected int dir;
 	private int x;
 	private int y;
-	private static final int bulletWidth = 6;
-	private static final int bulletHeight = 10;
+	private static final int bulletWidth = 2;
+	private static final int bulletHeight = 2;
 	protected SpaceShip shooter;
 	protected boolean isDestroyed;
 
@@ -94,6 +94,6 @@ public class Bullet implements ICrashable, IRenderable {
 		g2.setColor(Color.MAGENTA);
 		if (shooter instanceof MainShip)
 			g2.setColor(Color.CYAN);
-		g2.fillRect(x - 3, y, bulletWidth, bulletHeight);
+		g2.fillRect(x - 1, y, bulletWidth, bulletHeight);
 	}
 }
