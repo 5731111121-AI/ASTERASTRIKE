@@ -14,7 +14,7 @@ public class Bullet implements ICrashable, IRenderable {
 	private int x;
 	private int y;
 	private static final int bulletWidth = 2;
-	private static final int bulletHeight = 2;
+	private static final int bulletHeight = 4;
 	protected SpaceShip shooter;
 	protected boolean isDestroyed;
 
@@ -55,8 +55,8 @@ public class Bullet implements ICrashable, IRenderable {
 
 		int ax1 = a.x;
 		int ay1 = a.y;
-		int ax2 = a.x + a.shipPic.getWidth();
-		int ay2 = a.y + a.shipPic.getHeight();
+		int ax2 = a.x + a.shipSprite.getWidth();
+		int ay2 = a.y + a.shipSprite.getHeight();
 		int bx1 = this.x;
 		int by1 = this.y;
 		int bx2 = this.x + bulletWidth;

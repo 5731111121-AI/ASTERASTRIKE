@@ -53,7 +53,7 @@ public class GameLogic {
 			spawnDelayCounter = (++spawnDelayCounter) % spawnDelay;
 			if (spawnDelayCounter == 0) {
 				BufferedImage enemyImg = DrawingUtility.getImageFromResource("EnemyShip1.png");
-				EnemyShip e = new EnemyShip(0, enemyImg);
+				EnemyShip e = new EnemyShip(0);
 				eShips.add(e);
 				RenderableHolder.getInstance().add(e);
 			}

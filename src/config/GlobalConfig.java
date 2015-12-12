@@ -16,11 +16,16 @@ public class GlobalConfig {
 	public static final Font mainFont = GeneralUtility.getFontFromResource("VanadineRg.ttf").deriveFont(Font.PLAIN, 30);
 	public static final Font subFont = GeneralUtility.getFontFromResource("VenusRisingRg.ttf").deriveFont(Font.PLAIN, 20);
 	//game configuration
-	public static final int DEFAULT_SPEEDX = 3;
-	public static final int DEFAULT_SPEEDY = 2;
+	public static final int DEFAULT_SPEEDX = 2;
+	public static final int DEFAULT_SPEEDY = 1;
 	public static final int DEFAULT_MAXHP = 5;
 	public static final int DEFAULT_BULLET_DAMAGE = 1;
 	public static final int DEFAULT_SHOOTING_DELAY = 15;
 	public static final int DEFAULT_BULLET_SPEED = 15;
 	public static final int GAME_DELAY = 20;
+	//game save
+	public static int currentShip;
+	public static int credits;
+	public static boolean isSoundOn;
+	public static boolean[] isBought;
 }

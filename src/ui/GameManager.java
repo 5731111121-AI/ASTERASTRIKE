@@ -2,6 +2,7 @@ package ui;
 
 import config.GlobalConfig;
 import javafx.embed.swing.JFXPanel;
+import logic.ResourceLoader;
 import utility.InputUtility;
 
 public class GameManager {
@@ -14,9 +15,19 @@ public class GameManager {
 
 		gameWindow = new GameWindow(new GameLoadScreen());
 
-		//
-		
-		gameWindow.switchScene(new GameTitle());
+		ResourceLoader loader = new ResourceLoader();
+		Thread loaderThread = new Thread(loader);
+		loaderThread.start();
+
+		try {
+			loaderThread.join();
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+
+		if (!loaderThread.isAlive()) {
+			gameWindow.switchScene(new GameTitle());
+		}
 		while (true) {
 			try {
 				Thread.sleep(GlobalConfig.REFRESH_DELAY);
@@ -26,7 +37,7 @@ public class GameManager {
 			gameWindow.getCurrentScene().repaint();
 			gameWindow.getCurrentScene().update();
 			InputUtility.postUpdate();
-			if(nextScene != null){
+			if (nextScene != null) {
 				gameWindow.switchScene(nextScene);
 				nextScene = null;
 			}

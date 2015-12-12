@@ -19,22 +19,7 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 	protected boolean isDestroyed;
 	protected int bulletDamage;
 	protected int grade;
-	protected BufferedImage shipPic;
-
-	public SpaceShip(int grade, BufferedImage shipPic) {
-		maxHP = this.HP = GlobalConfig.DEFAULT_MAXHP;
-		x = GlobalConfig.SCREEN_WIDTH_CENTER;
-		y = GlobalConfig.SCREEN_HEIGHT;
-		speedX = GlobalConfig.DEFAULT_SPEEDX;
-		speedY = GlobalConfig.DEFAULT_SPEEDY;
-		shootingDelayCounter = 0;
-		shootingDelay = GlobalConfig.DEFAULT_SHOOTING_DELAY;
-		bulletSpeed = GlobalConfig.DEFAULT_BULLET_SPEED;
-		bulletDamage = GlobalConfig.DEFAULT_BULLET_DAMAGE;
-		this.shipPic = shipPic;
-		this.grade = grade;
-		isDestroyed = false;
-	}
+	protected BufferedImage shipSprite;
 
 	public SpaceShip(int grade) {
 		maxHP = this.HP = GlobalConfig.DEFAULT_MAXHP;
@@ -58,12 +43,12 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 		this.grade = grade;
 	}
 
-	public BufferedImage getShipPic() {
-		return shipPic;
+	public BufferedImage getShipSprite() {
+		return shipSprite;
 	}
 
-	public void setShipPic(BufferedImage shipPic) {
-		this.shipPic = shipPic;
+	public void setShipSprite(BufferedImage shipPic) {
+		this.shipSprite = shipPic;
 	}
 
 	public int getHP() {
@@ -160,19 +145,19 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 
 	@Override
 	public void render(Graphics2D g2) {
-		g2.drawImage(shipPic, null, x, y);
+		g2.drawImage(shipSprite, null, x, y);
 	}
 
 	@Override
 	public boolean crash(ICrashable a) {
 		int ax1 = ((SpaceShip) a).x;
 		int ay1 = ((SpaceShip) a).y;
-		int ax2 = ((SpaceShip) a).x + ((SpaceShip) a).shipPic.getWidth();
-		int ay2 = ((SpaceShip) a).y + ((SpaceShip) a).shipPic.getHeight();
+		int ax2 = ((SpaceShip) a).x + ((SpaceShip) a).shipSprite.getWidth();
+		int ay2 = ((SpaceShip) a).y + ((SpaceShip) a).shipSprite.getHeight();
 		int bx1 = this.x;
 		int by1 = this.y;
-		int bx2 = this.x + this.shipPic.getWidth();
-		int by2 = this.y + this.shipPic.getHeight();
+		int bx2 = this.x + this.shipSprite.getWidth();
+		int by2 = this.y + this.shipSprite.getHeight();
 
 		if (by2 < ay1 || ay2 < by1 || bx2 < ax1 || ax2 < bx1) {
 			return false; 
@@ -188,7 +173,7 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 
 	public HashSet<String> getMask(SpaceShip c) {
 		HashSet<String> mask = new HashSet<String>();
-		BufferedImage img = c.shipPic;
+		BufferedImage img = c.shipSprite;
 		int pixel, a;
 		for (int i = 0; i < img.getWidth(); i++) {
 			for (int j = 0; j < img.getHeight(); j++) {
