@@ -12,7 +12,7 @@ import logic.IRenderable;
 import logic.RenderableHolder;
 import utility.InputUtility;
 
-public class GamePlay extends JComponent{
+public class GamePlay extends GameScene{
 
 	/**
 	 * 
@@ -49,5 +49,11 @@ public class GamePlay extends JComponent{
 		for (IRenderable en : RenderableHolder.getInstance().getRenderableList())
 			if(en.isVisible())
 				en.render(g2d);
+	}
+
+	@Override
+	protected void update() {
+		// TODO Auto-generated method stub
+		
 	}
 }
