@@ -6,7 +6,7 @@ import utility.GeneralUtility;
 
 public class GlobalConfig {
 
-	public static final String GAME_NAME = "ASTERA STRIKE";
+	public static final String GAME_NAME = "ASTERASTRIKE";
 	public static final int REFRESH_DELAY = 20;
 	//screen configuration
 	public static final int SCREEN_WIDTH = 1024;

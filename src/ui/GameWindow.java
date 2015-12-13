@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import config.GlobalConfig;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import utility.ResourceUtility;
 
 public class GameWindow extends JFrame {
 
@@ -18,6 +19,8 @@ public class GameWindow extends JFrame {
 		
 		currentScene = null;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultLookAndFeelDecorated(true);
+		setIconImage(ResourceUtility.enemy_2);
 		setResizable(false);
 		
 		switchScene(gameScene);

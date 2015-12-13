@@ -9,16 +9,16 @@ public class MainShip extends SpaceShip {
 
 	public MainShip(int grade) {
 		super(grade);
-		int shipWidth = shipSprite.getWidth();
-		int shipHeight = shipSprite.getHeight();
-		x = GlobalConfig.SCREEN_WIDTH_CENTER - shipWidth / 2;
-		y = GlobalConfig.SCREEN_HEIGHT - shipHeight;
 		switch (grade) {
 		case 1:
 			setShipSprite(ResourceUtility.ship_1);
 			HP = maxHP = 7;
 			shootingDelay = 12;
 			bulletSpeed = 20;
+			int shipWidth = shipSprite.getWidth();
+			int shipHeight = shipSprite.getHeight();
+			x = GlobalConfig.SCREEN_WIDTH_CENTER - shipWidth / 2;
+			y = GlobalConfig.SCREEN_HEIGHT - shipHeight;
 			break;
 		case 2:
 			setShipSprite(ResourceUtility.ship_2);
@@ -27,6 +27,10 @@ public class MainShip extends SpaceShip {
 			bulletSpeed = 18;
 			bulletDamage = 2;
 			speedX = speedY = 3;
+			shipWidth = shipSprite.getWidth();
+			shipHeight = shipSprite.getHeight();
+			x = GlobalConfig.SCREEN_WIDTH_CENTER - shipWidth / 2;
+			y = GlobalConfig.SCREEN_HEIGHT - shipHeight;
 			break;
 		case 3:
 			setShipSprite(ResourceUtility.ship_3);
@@ -36,6 +40,10 @@ public class MainShip extends SpaceShip {
 			bulletDamage = 3;
 			speedX = 4;
 			speedY = 3;
+			shipWidth = shipSprite.getWidth();
+			shipHeight = shipSprite.getHeight();
+			x = GlobalConfig.SCREEN_WIDTH_CENTER - shipWidth / 2;
+			y = GlobalConfig.SCREEN_HEIGHT - shipHeight;
 			break;
 		case 4:
 			setShipSprite(ResourceUtility.ship_4);
@@ -44,11 +52,19 @@ public class MainShip extends SpaceShip {
 			bulletSpeed = 25;
 			bulletDamage = 5;
 			speedX = speedY = 5;
+			shipWidth = shipSprite.getWidth();
+			shipHeight = shipSprite.getHeight();
+			x = GlobalConfig.SCREEN_WIDTH_CENTER - shipWidth / 2;
+			y = GlobalConfig.SCREEN_HEIGHT - shipHeight;
 			break;
 		default:
 			setShipSprite(ResourceUtility.ship_0);
 			speedX = 3;
 			speedY = 2;
+			shipWidth = shipSprite.getWidth();
+			shipHeight = shipSprite.getHeight();
+			x = GlobalConfig.SCREEN_WIDTH_CENTER - shipWidth / 2;
+			y = GlobalConfig.SCREEN_HEIGHT - shipHeight;
 			break;
 		}
 	}

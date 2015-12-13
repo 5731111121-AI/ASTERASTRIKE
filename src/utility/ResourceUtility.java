@@ -16,7 +16,6 @@ public class ResourceUtility {
 	public static final RenderObject menuBG2 = new RenderObject(DrawingUtility.getImageFromResource("menuSprite2.jpg"));
 	public static final RenderObject menuBG3 = new RenderObject(DrawingUtility.getImageFromResource("menuSprite3.jpg"));
 	public static final RenderObject menuSel = new RenderObject(DrawingUtility.getImageFromResource("menuSelector.png"));
-	
 	//ship
 	public static final BufferedImage ship_0 = DrawingUtility.getImageFromResource("ship0.png");
 	public static final BufferedImage ship_1 = DrawingUtility.getImageFromResource("ship1.png");

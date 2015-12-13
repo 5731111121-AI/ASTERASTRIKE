@@ -29,7 +29,7 @@ public class GameTitle extends GameScene {
 		Graphics2D g2 = (Graphics2D) g;
 		bg.render(g2);
 		logo.render(g2);
-		Font font = GlobalConfig.mainFont.deriveFont(Font.BOLD, 16);
+		Font font = GlobalConfig.subFont.deriveFont(Font.BOLD, 12);
 		g2.setFont(font);
 		g2.setColor(Color.white);
 		FontMetrics metrics = g2.getFontMetrics(font);
@@ -39,8 +39,8 @@ public class GameTitle extends GameScene {
 		g2.drawString("A Programming Methodology I (2015/1) Project", GlobalConfig.SCREEN_WIDTH - (int) rect.getWidth() - 5, GlobalConfig.SCREEN_HEIGHT - (int) rect.getHeight() - 20);
 		font = GlobalConfig.mainFont.deriveFont(Font.BOLD, 25);
 		g2.setFont(font);
-		rect = metrics.getStringBounds("Press Any Key To Continue . . .", g2);
-		g2.drawString("Press Any Key To Continue . . .", GlobalConfig.SCREEN_WIDTH_CENTER - (int) rect.getWidth() / 2 - 35, GlobalConfig.SCREEN_HEIGHT_CENTER + 60);
+		rect = metrics.getStringBounds("Press Any Key To Continue", g2);
+		g2.drawString("Press Any Key To Continue", GlobalConfig.SCREEN_WIDTH_CENTER - (int) rect.getWidth() / 2, GlobalConfig.SCREEN_HEIGHT_CENTER + 80);
 	}
 
 	@Override

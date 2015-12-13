@@ -17,7 +17,7 @@ public class GameMenu extends GameScene {
 	private RenderObject menuBG = ResourceUtility.menuBG0;
 	private RenderObject logo = ResourceUtility.logo;
 	private RenderObject sel = ResourceUtility.menuSel;
-	private int optionMenu = 0;
+	private static int optionMenu = 0;
 
 	public GameMenu() {
 		super();
@@ -38,13 +38,13 @@ public class GameMenu extends GameScene {
 		Rectangle2D rect1 = metrics.getStringBounds("START", g2);
 		g2.drawString("START", 128 - (int) rect1.getWidth() / 2, GlobalConfig.SCREEN_HEIGHT - (int) rect1.getHeight());
 		Rectangle2D rect2 = metrics.getStringBounds("SHOP", g2);
-		g2.drawString("SHOP", 128 + 256 - (int) rect2.getWidth() / 2,
+		g2.drawString("SHOP", 384 - (int) rect2.getWidth() / 2,
 				GlobalConfig.SCREEN_HEIGHT - (int) rect2.getHeight());
 		Rectangle2D rect3 = metrics.getStringBounds("OPTION", g2);
-		g2.drawString("OPTION", 128 + 2 * 256 - (int) rect3.getWidth() / 2,
+		g2.drawString("OPTION", 640 - (int) rect3.getWidth() / 2,
 				GlobalConfig.SCREEN_HEIGHT - (int) rect3.getHeight());
 		Rectangle2D rect4 = metrics.getStringBounds("EXIT", g2);
-		g2.drawString("EXIT", 128 + 3 * 256 - (int) rect4.getWidth() / 2,
+		g2.drawString("EXIT", 896 - (int) rect4.getWidth() / 2,
 				GlobalConfig.SCREEN_HEIGHT - (int) rect4.getHeight());
 		switch (optionMenu) {
 		case 0:
@@ -72,7 +72,7 @@ public class GameMenu extends GameScene {
 
 	@Override
 	protected void update() {
-		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER)) {
+		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER) || InputUtility.getKeyTriggered(KeyEvent.VK_SPACE)) {
 			switch (optionMenu) {
 			case 0:
 				GameManager.gameWindow.switchScene(new GamePlay());

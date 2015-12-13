@@ -35,6 +35,14 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 		isDestroyed = false;
 	}
 
+	public int getBulletDamage() {
+		return bulletDamage;
+	}
+
+	public void setBulletDamage(int bulletDamage) {
+		this.bulletDamage = bulletDamage;
+	}
+
 	public int getGrade() {
 		return grade;
 	}
