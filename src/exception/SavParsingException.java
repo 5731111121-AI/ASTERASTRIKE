@@ -1,11 +1,6 @@
 package exception;
 
 public class SavParsingException extends SavException {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	public SavParsingException() {
 		super();

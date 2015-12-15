@@ -2,11 +2,6 @@ package exception;
 
 public class NoSavFileException extends SavException {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	public NoSavFileException() {
 		super();
 	}

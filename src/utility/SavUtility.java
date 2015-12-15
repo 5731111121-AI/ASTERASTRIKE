@@ -45,6 +45,7 @@ public class SavUtility {
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new NoSavFileException();
 		}
 	}
 
@@ -80,11 +81,11 @@ public class SavUtility {
 			GlobalConfig.credits = credits;
 			GlobalConfig.isSoundOn = isSoundOn;
 		} catch (FileNotFoundException e) {
-			createDefaultSavFile();
 			e.printStackTrace();
+			throw new NoSavFileException();
 		} catch (IOException e) {
-			createDefaultSavFile();
 			e.printStackTrace();
+			throw new SavParsingException();
 		}
 	}
 
