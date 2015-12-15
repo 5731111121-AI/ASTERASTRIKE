@@ -5,9 +5,13 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.awt.print.Book;
+import java.net.URISyntaxException;
 
 import config.GlobalConfig;
 import exception.NoSavFileException;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import logic.Bullet;
 import logic.EnemyShip;
 import logic.ICrashable;
@@ -37,6 +41,8 @@ public class GamePlay extends GameScene {
 	private static final int lowerBoundSpawnDelay = 180;
 	private static final int upperBoundSpawnDelay = 300;
 	private BufferedImage boom = DrawingUtility.getImageFromResource("boom.png");
+	private Media boomSound;
+	private MediaPlayer boomSoundPlayer;
 
 	public GamePlay() {
 		GlobalConfig.score = 0;
@@ -47,9 +53,30 @@ public class GamePlay extends GameScene {
 		isPlaying = true;
 		bg.topLeftAnimationAt(0, 0);
 		bg.setZ(Integer.MIN_VALUE);
+		
+		if (GameManager.gameWindow.mediaPlayer != null) {
+			GameManager.gameWindow.mediaPlayer.stop();
+		}
+		try {
+			GameManager.gameWindow.music = new Media(GamePlay.class.getResource("/res/audio/main.mp3").toURI().toString());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		GameManager.gameWindow.mediaPlayer = new MediaPlayer(GameManager.gameWindow.music);
+		GameManager.gameWindow.mediaPlayer.setCycleCount(Integer.MAX_VALUE);
+		if(GlobalConfig.isSoundOn) GameManager.gameWindow.mediaPlayer.play();
 
 		RenderableHolder.getInstance().getRenderableList().add(bg);
 		RenderableHolder.getInstance().getRenderableList().add(mainShip);
+		
+		try {
+			boomSound = new Media(GamePlay.class.getResource("/res/audio/3..2..1..GO!.mp3").toURI().toString());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		boomSoundPlayer = new MediaPlayer(boomSound);
+		boomSoundPlayer.setCycleCount(1);
+		if(GlobalConfig.isSoundOn) boomSoundPlayer.play();
 
 		enemySpawner = new Thread(new Runnable() {
 
@@ -102,6 +129,7 @@ public class GamePlay extends GameScene {
 				}
 			}
 		});
+		
 		enemySpawner.start();
 	}
 
@@ -118,6 +146,7 @@ public class GamePlay extends GameScene {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected synchronized void update() {
 		if (isPlaying) {
@@ -126,16 +155,6 @@ public class GamePlay extends GameScene {
 				for (IRenderable ir : RenderableHolder.getInstance().getRenderableList()) {
 					if (!ir.isVisible()) {
 						RenderableHolder.getInstance().getRenderableList().remove(ir);
-					}
-					if (ir instanceof EnemyShip) {
-						((EnemyShip) ir).update();
-						if (mainShip.crash((ICrashable) ir)) {
-							mainShip.setHP(0);
-							((EnemyShip) ir).setHP(0);
-						}
-						if (((EnemyShip) ir).getHP() == 0) {
-							GlobalConfig.score += ((EnemyShip) ir).getScore();
-						}
 					}
 					if (ir instanceof Bullet) {
 						((Bullet) ir).update();
@@ -147,6 +166,16 @@ public class GamePlay extends GameScene {
 							}
 						}
 					}
+					if (ir instanceof EnemyShip) {
+						((EnemyShip) ir).update();
+						if (mainShip.crash((ICrashable) ir)) {
+							mainShip.setHP(0);
+							((EnemyShip) ir).setHP(0);
+						}
+						if (((EnemyShip) ir).getHP() == 0) {
+							GlobalConfig.score += ((EnemyShip) ir).getScore();
+						}
+					}
 					if (ir instanceof SpaceShip && ((SpaceShip) ir).getHP() == 0) {
 						((SpaceShip) ir).setShipSprite(boom);
 						try {
@@ -154,6 +183,14 @@ public class GamePlay extends GameScene {
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
+						try {
+							boomSound = new Media(GamePlay.class.getResource("/res/audio/boom.mp3").toURI().toString());
+						} catch (URISyntaxException e) {
+							e.printStackTrace();
+						}
+						boomSoundPlayer = new MediaPlayer(boomSound);
+						boomSoundPlayer.setCycleCount(1);
+						if(GlobalConfig.isSoundOn) boomSoundPlayer.play();
 						((SpaceShip) ir).setDestroyed(true);
 					}
 				}
@@ -173,7 +210,10 @@ public class GamePlay extends GameScene {
 
 		if (mainShip.isDestroyed()) {
 			enemySpawner.stop();
-			RenderableHolder.getInstance().getRenderableList().clear();
+			synchronized (RenderableHolder.getInstance().getRenderableList()) {
+				RenderableHolder.getInstance().getRenderableList().clear();
+			}
+			
 			try {
 				SavUtility.saveGame();
 			} catch (NoSavFileException e) {

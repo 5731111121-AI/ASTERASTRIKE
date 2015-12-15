@@ -4,12 +4,16 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.net.URISyntaxException;
 
 import config.GlobalConfig;
 import exception.NoSavFileException;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import logic.MainShip;
 import utility.DrawingUtility;
 import utility.InputUtility;
+import utility.ResourceUtility;
 import utility.SavUtility;
 
 public class GameShop extends GameScene {
@@ -31,6 +35,17 @@ public class GameShop extends GameScene {
 		for (int i = 0; i < 5; i++) {
 			ship[i].centerAnimationAt(297, 250);
 		}
+		if (GameManager.gameWindow.mediaPlayer != null) {
+			GameManager.gameWindow.mediaPlayer.stop();
+		}
+		try {
+			GameManager.gameWindow.music = new Media(GameShop.class.getResource("/res/audio/shop.mp3").toURI().toString());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		GameManager.gameWindow.mediaPlayer = new MediaPlayer(GameManager.gameWindow.music);
+		GameManager.gameWindow.mediaPlayer.setCycleCount(Integer.MAX_VALUE);
+		if(GlobalConfig.isSoundOn) GameManager.gameWindow.mediaPlayer.play();
 		shopOption = 0;
 	}
 

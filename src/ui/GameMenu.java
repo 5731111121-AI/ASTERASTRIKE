@@ -7,8 +7,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
+import java.net.URISyntaxException;
 
 import config.GlobalConfig;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import utility.InputUtility;
 import utility.ResourceUtility;
 
@@ -23,6 +26,18 @@ public class GameMenu extends GameScene {
 		super();
 		menuBG.topLeftAnimationAt(0, 0);
 		logo.topLeftAnimationAt(5, 5);
+		
+		if (GameManager.gameWindow.mediaPlayer != null) {
+			GameManager.gameWindow.mediaPlayer.stop();
+		}
+		try {
+			GameManager.gameWindow.music = new Media(GameMenu.class.getResource("/" + ResourceUtility.URL_BGM).toURI().toString());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		GameManager.gameWindow.mediaPlayer = new MediaPlayer(GameManager.gameWindow.music);
+		GameManager.gameWindow.mediaPlayer.setCycleCount(Integer.MAX_VALUE);
+		if(GlobalConfig.isSoundOn) GameManager.gameWindow.mediaPlayer.play();
 	}
 
 	@Override

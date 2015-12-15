@@ -27,13 +27,13 @@ public class GameTitle extends GameScene {
 			GameManager.gameWindow.mediaPlayer.stop();
 		}
 		try {
-			GameManager.gameWindow.music = new Media(GamePlay.class.getResource("/" + ResourceUtility.URL_BGM).toURI().toString());
+			GameManager.gameWindow.music = new Media(GameTitle.class.getResource("/" + ResourceUtility.URL_BGM).toURI().toString());
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
 		GameManager.gameWindow.mediaPlayer = new MediaPlayer(GameManager.gameWindow.music);
 		GameManager.gameWindow.mediaPlayer.setCycleCount(Integer.MAX_VALUE);
-		GameManager.gameWindow.mediaPlayer.play();
+		if(GlobalConfig.isSoundOn) GameManager.gameWindow.mediaPlayer.play();
 	}
 	
 	@Override

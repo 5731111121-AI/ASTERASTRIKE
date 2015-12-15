@@ -18,7 +18,7 @@ public class GlobalConfig {
 	//game configuration
 	public static final int DEFAULT_SPEEDX = 2;
 	public static final int DEFAULT_SPEEDY = 1;
-	public static final int DEFAULT_MAXHP = 9;
+	public static final int DEFAULT_MAXHP = 7;
 	public static final int DEFAULT_BULLET_DAMAGE = 1;
 	public static final int DEFAULT_SHOOTING_DELAY = 15;
 	public static final int DEFAULT_BULLET_SPEED = 15;

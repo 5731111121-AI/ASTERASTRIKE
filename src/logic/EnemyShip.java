@@ -18,7 +18,7 @@ public class EnemyShip extends SpaceShip {
 			HP = maxHP = 8;
 			speedX = 3;
 			speedY = 2;
-			shootingDelay = 300;
+			shootingDelay = 50;
 			bulletSpeed = 10;
 			bulletDamage = 2;
 			score = 2;

@@ -5,9 +5,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.net.URISyntaxException;
 
 import config.GlobalConfig;
 import exception.NoSavFileException;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import utility.DrawingUtility;
 import utility.InputUtility;
 import utility.ResourceUtility;
@@ -26,6 +29,17 @@ public class GameOption extends GameScene {
 	public GameOption() {
 		super();
 		bg.topLeftAnimationAt(0, 0);
+		if (GameManager.gameWindow.mediaPlayer != null) {
+			GameManager.gameWindow.mediaPlayer.stop();
+		}
+		try {
+			GameManager.gameWindow.music = new Media(GameOption.class.getResource("/res/audio/shop.mp3").toURI().toString());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		GameManager.gameWindow.mediaPlayer = new MediaPlayer(GameManager.gameWindow.music);
+		GameManager.gameWindow.mediaPlayer.setCycleCount(Integer.MAX_VALUE);
+		if(GlobalConfig.isSoundOn) GameManager.gameWindow.mediaPlayer.play();
 	}
 
 	@Override

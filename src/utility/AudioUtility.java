@@ -8,10 +8,6 @@ public class AudioUtility {
 	
 	private static MediaPlayer mp;
 
-	/*public static void playMusic() {
-		//playMusic(GlobalConfiguration.URL_BGM);
-	}*/
-
 	public static void playMusic(String music) {
 		URL musicURL = AudioUtility.class.getClassLoader().getResource(music);
 		mp = new MediaPlayer(new Media(musicURL.toString()));
