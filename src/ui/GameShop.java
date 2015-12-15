@@ -17,7 +17,7 @@ public class GameShop extends GameScene {
 	private static final RenderObject bg = new RenderObject(DrawingUtility.getImageFromResource("shopSprite.jpg"));
 	private static final RenderObject[] ship = new RenderObject[5];
 	private static int shopOption;
-	private static final int price[] = {20, 50, 100, 250, 500};
+	private static final int price[] = { 20, 50, 100, 250, 500 };
 
 	static {
 		for (int i = 0; i < 5; i++) {
@@ -64,9 +64,9 @@ public class GameShop extends GameScene {
 			g2.drawString("" + damage, 850, 220);
 			g2.drawString("" + shootingDelay, 850, 260);
 			g2.drawString("" + bulletSpeed, 850, 300);
-			if(GlobalConfig.isBought[shopOption]) {
+			if (GlobalConfig.isBought[shopOption]) {
 				String str = "You've bought it";
-				if(GlobalConfig.currentShip == shopOption) {
+				if (GlobalConfig.currentShip == shopOption) {
 					str = "Equiped";
 				}
 				g2.setColor(Color.darkGray);
@@ -99,9 +99,9 @@ public class GameShop extends GameScene {
 			g2.drawString("" + damage, 850, 220);
 			g2.drawString("" + shootingDelay, 850, 260);
 			g2.drawString("" + bulletSpeed, 850, 300);
-			if(GlobalConfig.isBought[shopOption]) {
+			if (GlobalConfig.isBought[shopOption]) {
 				String str = "You've bought it";
-				if(GlobalConfig.currentShip == shopOption) {
+				if (GlobalConfig.currentShip == shopOption) {
 					str = "Equiped";
 				}
 				g2.setColor(Color.darkGray);
@@ -134,9 +134,9 @@ public class GameShop extends GameScene {
 			g2.drawString("" + damage, 850, 220);
 			g2.drawString("" + shootingDelay, 850, 260);
 			g2.drawString("" + bulletSpeed, 850, 300);
-			if(GlobalConfig.isBought[shopOption]) {
+			if (GlobalConfig.isBought[shopOption]) {
 				String str = "You've bought it";
-				if(GlobalConfig.currentShip == shopOption) {
+				if (GlobalConfig.currentShip == shopOption) {
 					str = "Equiped";
 				}
 				g2.setColor(Color.darkGray);
@@ -169,9 +169,9 @@ public class GameShop extends GameScene {
 			g2.drawString("" + damage, 850, 220);
 			g2.drawString("" + shootingDelay, 850, 260);
 			g2.drawString("" + bulletSpeed, 850, 300);
-			if(GlobalConfig.isBought[shopOption]) {
+			if (GlobalConfig.isBought[shopOption]) {
 				String str = "You've bought it";
-				if(GlobalConfig.currentShip == shopOption) {
+				if (GlobalConfig.currentShip == shopOption) {
 					str = "Equiped";
 				}
 				g2.setColor(Color.darkGray);
@@ -204,9 +204,9 @@ public class GameShop extends GameScene {
 			g2.drawString("" + damage, 850, 220);
 			g2.drawString("" + shootingDelay, 850, 260);
 			g2.drawString("" + bulletSpeed, 850, 300);
-			if(GlobalConfig.isBought[shopOption]) {
+			if (GlobalConfig.isBought[shopOption]) {
 				String str = "You've bought it";
-				if(GlobalConfig.currentShip == shopOption) {
+				if (GlobalConfig.currentShip == shopOption) {
 					str = "Equiped";
 				}
 				g2.setColor(Color.darkGray);
@@ -224,16 +224,18 @@ public class GameShop extends GameScene {
 	@Override
 	protected void update() {
 		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER) || InputUtility.getKeyTriggered(KeyEvent.VK_SPACE)) {
-			if (GlobalConfig.credits >= price[shopOption]) {
+			if (GlobalConfig.isBought[shopOption]) {
+				GlobalConfig.currentShip = shopOption;
+			} else if (GlobalConfig.credits >= price[shopOption]) {
 				GlobalConfig.currentShip = shopOption;
 				GlobalConfig.isBought[shopOption] = true;
 				GlobalConfig.credits -= price[shopOption];
-				try {
-					SavUtility.saveGame();
-				} catch (NoSavFileException e) {
-					SavUtility.createDefaultSavFile();
-					e.printStackTrace();
-				}
+			}
+			try {
+				SavUtility.saveGame();
+			} catch (NoSavFileException e) {
+				SavUtility.createDefaultSavFile();
+				e.printStackTrace();
 			}
 		}
 

@@ -12,7 +12,7 @@ public class MainShip extends SpaceShip {
 		switch (grade) {
 		case 1:
 			setShipSprite(ResourceUtility.ship_1);
-			HP = maxHP = 7;
+			HP = maxHP = 13;
 			shootingDelay = 12;
 			bulletSpeed = 20;
 			int shipWidth = shipSprite.getWidth();
@@ -22,7 +22,7 @@ public class MainShip extends SpaceShip {
 			break;
 		case 2:
 			setShipSprite(ResourceUtility.ship_2);
-			HP = maxHP = 6;
+			HP = maxHP = 11;
 			shootingDelay = 10;
 			bulletSpeed = 18;
 			bulletDamage = 2;
@@ -34,7 +34,7 @@ public class MainShip extends SpaceShip {
 			break;
 		case 3:
 			setShipSprite(ResourceUtility.ship_3);
-			HP = maxHP = 8;
+			HP = maxHP = 15;
 			shootingDelay = 8;
 			bulletSpeed = 20;
 			bulletDamage = 3;
@@ -47,7 +47,7 @@ public class MainShip extends SpaceShip {
 			break;
 		case 4:
 			setShipSprite(ResourceUtility.ship_4);
-			HP = maxHP = 10;
+			HP = maxHP = 20;
 			shootingDelay = 5;
 			bulletSpeed = 25;
 			bulletDamage = 5;
