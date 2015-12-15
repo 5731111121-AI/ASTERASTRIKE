@@ -7,7 +7,7 @@ import utility.GeneralUtility;
 public class GlobalConfig {
 
 	public static final String GAME_NAME = "ASTERASTRIKE";
-	public static final int REFRESH_DELAY = 20;
+	public static final int REFRESH_DELAY = 30;
 	//screen configuration
 	public static final int SCREEN_WIDTH = 1024;
 	public static final int SCREEN_HEIGHT = 576;
@@ -26,6 +26,7 @@ public class GlobalConfig {
 	//game save
 	public static int currentShip;
 	public static int credits;
+	public static int score;
 	public static boolean isSoundOn;
 	public static boolean[] isBought;
 }

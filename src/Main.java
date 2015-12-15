@@ -1,8 +1,4 @@
-import javax.swing.JFrame;
-
-import logic.GameLogic;
 import ui.GameManager;
-import ui.GamePlay;
 
 public class Main {
 

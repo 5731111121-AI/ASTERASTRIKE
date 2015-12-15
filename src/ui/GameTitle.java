@@ -45,7 +45,7 @@ public class GameTitle extends GameScene {
 
 	@Override
 	protected void update() {
-		for(int i = 0; i < 255; i++){
+		for(int i = 0; i < 256; i++){
 			if (InputUtility.getKeyTriggered(i)) {
 				GameManager.gameWindow.switchScene(new GameMenu());
 			}

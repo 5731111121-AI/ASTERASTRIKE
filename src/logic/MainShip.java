@@ -71,8 +71,9 @@ public class MainShip extends SpaceShip {
 
 	@Override
 	public void shoot() {
-		RenderableHolder.getInstance()
-				.add(new Bullet(bulletDamage, bulletSpeed, x + shipSprite.getWidth() / 2, y, this));
+		if (HP != 0)
+			RenderableHolder.getInstance()
+					.add(new Bullet(bulletDamage, bulletSpeed, x + shipSprite.getWidth() / 2, y, this));
 	}
 
 	@Override

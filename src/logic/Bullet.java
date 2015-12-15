@@ -84,6 +84,14 @@ public class Bullet implements ICrashable, IRenderable {
 		return !isDestroyed;
 	}
 
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+
 	@Override
 	public int getZ() {
 		return Integer.MAX_VALUE - 1;

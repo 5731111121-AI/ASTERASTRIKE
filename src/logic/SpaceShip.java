@@ -35,6 +35,18 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 		isDestroyed = false;
 	}
 
+	public int getShootingDelayCounter() {
+		return shootingDelayCounter;
+	}
+
+	public void setShootingDelayCounter(int shootingDelayCounter) {
+		this.shootingDelayCounter = shootingDelayCounter;
+	}
+	
+	public void incShootingCounter(){
+		shootingDelayCounter++;
+	}
+
 	public int getBulletDamage() {
 		return bulletDamage;
 	}
@@ -69,8 +81,6 @@ public abstract class SpaceShip implements ICrashable, IRenderable {
 
 	public void decreaseHP(int damage) {
 		HP = HP - damage <= 0 ? 0 : HP - damage;
-		if (HP <= 0)
-			isDestroyed = true;
 	}
 
 	public void increaseHP(int inc) {
