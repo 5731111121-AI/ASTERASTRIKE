@@ -25,4 +25,6 @@ public class ResourceUtility {
 	public static final BufferedImage enemy_0 = DrawingUtility.getImageFromResource("enemy0.png");
 	public static final BufferedImage enemy_1 = DrawingUtility.getImageFromResource("enemy1.png");
 	public static final BufferedImage enemy_2 = DrawingUtility.getImageFromResource("enemy2.png");
+	//sound
+	public static final String URL_BGM = "res/audio/title.mp3";
 }

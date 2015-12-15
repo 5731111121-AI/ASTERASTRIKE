@@ -47,7 +47,7 @@ public class GamePlay extends GameScene {
 		isPlaying = true;
 		bg.topLeftAnimationAt(0, 0);
 		bg.setZ(Integer.MIN_VALUE);
-		
+
 		RenderableHolder.getInstance().getRenderableList().add(bg);
 		RenderableHolder.getInstance().getRenderableList().add(mainShip);
 
@@ -55,35 +55,47 @@ public class GamePlay extends GameScene {
 
 			@Override
 			public void run() {
-				while (mainShip.isVisible()) {
+				while (true) {
 					try {
 						enemySpawner.sleep(20);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					if (++spawnDelayCounter % spawnDelay == 0) {
-						spawnDelayCounter = 0;
-						int tripleChance = GeneralUtility.random(1, 100);
-						int grade;
-						if (GlobalConfig.score / 2 > tripleChance) {
-							grade = GeneralUtility.random(0, 2);
-							RenderableHolder.getInstance().getRenderableList().add(new EnemyShip(grade));
-							grade = GeneralUtility.random(1, 2);
-							RenderableHolder.getInstance().getRenderableList().add(new EnemyShip(grade));
-							RenderableHolder.getInstance().getRenderableList().add(new EnemyShip(2));
-							spawnDelay = GeneralUtility.random(lowerBoundSpawnDelay, upperBoundSpawnDelay);
-						} else {
-							int doubleChance = GeneralUtility.random(1, 100);
-							if (doubleChance < ((100 - GlobalConfig.score / 2) < 20 ? 20 : (100 - GlobalConfig.score / 2))) {
-								grade = GeneralUtility.random(0, 1);
-								RenderableHolder.getInstance().getRenderableList().add(new EnemyShip(grade));
-								spawnDelay = GeneralUtility.random(lowerBoundSpawnDelay, upperBoundSpawnDelay);
-							} else {
-								grade = GeneralUtility.random(0, 1);
-								RenderableHolder.getInstance().getRenderableList().add(new EnemyShip(grade));
+					synchronized (RenderableHolder.getInstance().getRenderableList()) {
+						if(!isPlaying) {
+							try {
+								System.out.println("I'm waiting here");
+								RenderableHolder.getInstance().getRenderableList().wait();
+								System.out.println("The show must go on!");
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+						if (++spawnDelayCounter % spawnDelay == 0) {
+							spawnDelayCounter = 0;
+							int tripleChance = GeneralUtility.random(1, 100);
+							int grade;
+							if (GlobalConfig.score / 2 > tripleChance) {
 								grade = GeneralUtility.random(0, 2);
 								RenderableHolder.getInstance().getRenderableList().add(new EnemyShip(grade));
+								grade = GeneralUtility.random(1, 2);
+								RenderableHolder.getInstance().getRenderableList().add(new EnemyShip(grade));
+								RenderableHolder.getInstance().getRenderableList().add(new EnemyShip(2));
 								spawnDelay = GeneralUtility.random(lowerBoundSpawnDelay, upperBoundSpawnDelay);
+							} else {
+								int doubleChance = GeneralUtility.random(1, 100);
+								if (doubleChance < ((100 - GlobalConfig.score / 2) < 20 ? 20
+										: (100 - GlobalConfig.score / 2))) {
+									grade = GeneralUtility.random(0, 1);
+									RenderableHolder.getInstance().getRenderableList().add(new EnemyShip(grade));
+									spawnDelay = GeneralUtility.random(lowerBoundSpawnDelay, upperBoundSpawnDelay);
+								} else {
+									grade = GeneralUtility.random(0, 1);
+									RenderableHolder.getInstance().getRenderableList().add(new EnemyShip(grade));
+									grade = GeneralUtility.random(0, 2);
+									RenderableHolder.getInstance().getRenderableList().add(new EnemyShip(grade));
+									spawnDelay = GeneralUtility.random(lowerBoundSpawnDelay, upperBoundSpawnDelay);
+								}
 							}
 						}
 					}
@@ -107,7 +119,7 @@ public class GamePlay extends GameScene {
 	}
 
 	@Override
-	protected void update() {
+	protected synchronized void update() {
 		if (isPlaying) {
 			synchronized (RenderableHolder.getInstance().getRenderableList()) {
 				mainShip.update();
@@ -145,18 +157,22 @@ public class GamePlay extends GameScene {
 						((SpaceShip) ir).setDestroyed(true);
 					}
 				}
-			}
 
-			if (InputUtility.getKeyTriggered(KeyEvent.VK_ESCAPE)) {
-				isPlaying = false;
+				if (InputUtility.getKeyTriggered(KeyEvent.VK_ESCAPE)) {
+					isPlaying = false;
+				}
 			}
 		} else {
-			if (InputUtility.getKeyTriggered(KeyEvent.VK_ESCAPE)) {
-				isPlaying = true;
+			synchronized (RenderableHolder.getInstance().getRenderableList()) {
+				if (InputUtility.getKeyTriggered(KeyEvent.VK_ESCAPE)) {
+					isPlaying = true;
+					RenderableHolder.getInstance().getRenderableList().notifyAll();
+				}
 			}
 		}
 
 		if (mainShip.isDestroyed()) {
+			enemySpawner.stop();
 			RenderableHolder.getInstance().getRenderableList().clear();
 			try {
 				SavUtility.saveGame();
